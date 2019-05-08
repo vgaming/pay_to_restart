@@ -1,10 +1,6 @@
-Gives players the ability to restart (re-randomize) leaders/factions by paying 5% starting gold.
+Gives players the ability to restart (re-randomize) leaders/factions by paying 10 gold.
 
 * only works on turn 1 for sides [1, 2]
 * if teams consists of multiple sides, all sides take the penalty
 
-As of this version, the add-on is very simple and stupid
-* all non-leader units are destroyed upon restart
-* village status is not changed upon restart
-
-Additionally, the add-on may not work at all as I'm still developing it (2019-05-07). :-)
+Work-In-Progress: it currently only randomizes leaders
