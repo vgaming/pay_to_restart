@@ -27,7 +27,7 @@ local function change_gold(opt_side, change)
 	end
 end
 
-local payment = 10
+local payment = 5
 
 on_event("side 1 turn 1", function()
 	on_event("side 1 turn 1 refresh", function () -- register late in event queue
