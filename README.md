@@ -1,4 +1,4 @@
-Wesnoth add-on "pay to restart"
+Wesnoth add-on "Pay to re-Roll"
 
 [Add-on description](./pay_to_restart/doc/about.txt)
 
