@@ -1,6 +1,4 @@
-Gives players the ability to restart (re-randomize) leaders/factions by paying gold.
+Gives players the ability to re-roll random leaders by paying gold.
 
 * only works on turn 1 for sides [1, 2]
-* if teams consists of multiple sides, all sides take the penalty
-
-Work-In-Progress: it currently only randomizes leaders
+* if the map has teams, all sides in team take penalty
