@@ -45,7 +45,10 @@ on_event("side 1 turn 1 end,side 2 turn 1 end", function ()
 		is_restart = false
 	else
 		local result = addon.show_dialog {
-			label = "Do you want to pay " .. payment .. " gold to re-randomize leaders?",
+			label = "Do you want to pay " .. payment .. " gold to re-randomize leaders? "
+				.. "\n\nChanges will applied after both side 1 and side 2 "
+				.. "\nmake their choice.",
+			can_cancel = false,
 			options = {
 				{ text = "No, leave current", image = "", func = function() print("option function") end},
 				{ text = "Yes", image = "", func = function() print("option function") end},
@@ -74,14 +77,39 @@ local function loop_skip_turns()
 	end)
 end
 
+local function randomize_unit(old_unit)
+	local start_loc = wesnoth.get_starting_location(old_unit.side)
+	local new_unit = wesnoth.create_unit {
+		x = start_loc[1],
+		y = start_loc[2],
+		name = old_unit.name,
+		gender = old_unit.gender,
+		unrenamable = old_unit.unrenamable,
+		canrecruit = old_unit.canrecruit,
+		side = old_unit.side,
+		type = addon.random_leader(),
+	}
+	wesnoth.wml_actions.kill { id = old_unit.id, fire_event = false, animate = false }
+	wesnoth.put_unit(new_unit)
+end
+local function do_restart()
+	for _, unit in ipairs(wesnoth.get_units {}) do
+		if wesnoth.sides[unit.side].__cfg.allow_player then
+			randomize_unit(unit)
+		end
+	end
+end
+
 on_event("side 2 turn 1 end", function ()
 	local first_reset = wml.variables["pay_to_restart_requested_" .. 1]
 	local second_reset = wml.variables["pay_to_restart_requested_" .. 2]
-	print_as_json(first_reset, second_reset)
+	print_as_json("pay_to_restart choices made:", first_reset, second_reset)
 	if first_reset or second_reset then
 		for _, side in ipairs(wesnoth.sides) do
 			side.gold = get_gold(side.side)
 		end
+		wesnoth.message("Pay for Restart", "One or both sides requested to re-randomize leaders...")
+		do_restart()
 		loop_skip_turns()
 	end
 end)

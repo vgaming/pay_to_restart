@@ -22,8 +22,12 @@ local function humans_can_recruit()
 		end
 	end
 end
+local map_has_recruits_result
 function addon.map_has_recruits()
-	return humans_can_recruit() and map_has_keeps()
+	if not map_has_recruits_result then
+		map_has_recruits_result = humans_can_recruit() and map_has_keeps()
+	end
+	return map_has_recruits_result
 end
 
 
