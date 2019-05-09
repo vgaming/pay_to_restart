@@ -1,4 +1,4 @@
-Gives players the ability to re-roll random leaders by paying gold.
+Gives players the ability to re-roll random leaders and restart the game.
 
 * only works on turn 1 for sides [1, 2]
 * if the map has teams, all sides in team take penalty
