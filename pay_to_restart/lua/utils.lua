@@ -1,4 +1,4 @@
--- << pay_to_restart/utils.lua
+-- << utils | pay_to_restart
 
 local addon = pay_to_restart
 local ipairs = ipairs

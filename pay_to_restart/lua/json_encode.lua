@@ -1,4 +1,4 @@
--- << creep_wars_json_encode
+-- << json_encode | pay_to_restart
 
 -- wesnoth.dofile("~add-ons/pay_to_restart/lua/json_encode.lua")
 

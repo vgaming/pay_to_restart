@@ -1,4 +1,4 @@
--- << pay_to_restart
+-- << main | pay_to_restart
 
 local wesnoth = wesnoth
 local addon = pay_to_restart

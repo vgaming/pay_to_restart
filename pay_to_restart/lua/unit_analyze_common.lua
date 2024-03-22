@@ -1,4 +1,4 @@
--- << unit_analyze_common
+-- << unit_analyze_common | pay_to_restart
 
 local wesnoth = wesnoth
 local addon = pay_to_restart
@@ -23,7 +23,7 @@ end
 
 local era_unit_rand_string = "1.." .. #era_array
 local function random_leader()
-	return era_array[helper.rand(era_unit_rand_string)]
+	return era_array[mathx.random_choice(era_unit_rand_string)]
 end
 
 

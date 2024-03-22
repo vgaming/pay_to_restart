@@ -1,11 +1,11 @@
--- << dialog
+-- << dialog | pay_to_restart
 
 local wesnoth = wesnoth
 local addon = pay_to_restart
 local ipairs = ipairs
 local string = string
 local type = type
-local T = wesnoth.require("lua/helper.lua").set_wml_tag_metatable {}
+local T = wml.tag
 local translate = wesnoth.textdomain "wesnoth"
 
 
@@ -108,7 +108,7 @@ end
 
 function addon.show_dialog(settings)
 	local func = function() return show_dialog_unsynchronized(settings) end
-	return wesnoth.synchronize_choice(func)
+	return wesnoth.sync.evaluate_single(func)
 end
 
 

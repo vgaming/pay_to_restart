@@ -1,4 +1,4 @@
--- << advertisement
+-- << advertisement | pay_to_restart
 
 local wesnoth = wesnoth
 local string = string
@@ -20,16 +20,16 @@ local function show_message(text)
 end
 
 local filename = "~add-ons/" .. addon_dir .. "/target/version.txt"
-local my_version = wesnoth.have_file(filename) and wesnoth.read_file(filename) or "0.0.0"
+local my_version = filesystem.have_file(filename) and filesystem.read_file(filename) or "0.0.0"
 
 local highest_ver_key = "addon_" .. addon_dir .. "_highest"
 wml.variables[highest_ver_key] = my_version
 
 on_event("side turn 1", function()
-	local side_version = wesnoth.synchronize_choice(function() return { v = my_version } end).v
+	local side_version = wesnoth.sync.evaluate_single(function() return { v = my_version } end).v
 	if rawget(_G, "print_as_json") then _G.print_as_json("addon", addon_name, wesnoth.current.side, side_version) end
 
-	if wesnoth.compare_versions(side_version, ">", wml.variables[highest_ver_key]) then
+	if wesnoth.version(side_version) > wesnoth.version(wml.variables[highest_ver_key]) then
 		wml.variables[highest_ver_key] = side_version
 	end
 end)
